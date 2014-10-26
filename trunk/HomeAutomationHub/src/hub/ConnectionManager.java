@@ -55,7 +55,7 @@ public class ConnectionManager implements Runnable {
 		try {
 			this.serverSocket = new ServerSocket(this.serverPort);
 		} catch (IOException e) {
-			throw new RuntimeException("Cannot open port 8080", e);
+			throw new RuntimeException("Cannot open port "+this.serverPort, e);
 		}
 	}
 
