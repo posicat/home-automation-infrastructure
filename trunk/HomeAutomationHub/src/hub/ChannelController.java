@@ -71,8 +71,7 @@ public class ChannelController {
 			json = new JSONObject(data);
 
 			if (json.has(NODE_REGISTER_CHANNELS)) {
-				JSONArray registerChannels = json
-						.getJSONArray(NODE_REGISTER_CHANNELS);
+				JSONArray registerChannels = json.getJSONArray(NODE_REGISTER_CHANNELS);
 				for (int i = 0; i < registerChannels.length(); i++) {
 					addNodeToChannel(registerChannels.getString(i), fromNode);
 				}
