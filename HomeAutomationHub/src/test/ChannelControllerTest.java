@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class HubTest {
+public class ChannelControllerTest {
 
 	@Test
 	public void test() {
