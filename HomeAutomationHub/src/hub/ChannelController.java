@@ -10,6 +10,16 @@ import org.json.JSONObject;
 
 public class ChannelController {
 
+	// Data packet field names
+	public static final String NODE_SOURCE_IDENTIFIER = "source";
+	public static final String NODE_DATA_DESTINATION = "destination";
+	public static final String NODE_DATA_BLOCK = "data";
+	public static final String NODE_REGISTER_CHANNELS = "register";
+	public static final String NODE_ERROR_MESSAGE = "error";
+
+	// Channel constants
+	public static final String NODE_SEND_TO_ALL_ADDRESS = "all";
+	
 	Hashtable<String, ArrayList<NodeController>> channels = new Hashtable<String, ArrayList<NodeController>>();
 	ArrayList<NodeController> allNodes = new ArrayList<NodeController>();
 
@@ -60,22 +70,22 @@ public class ChannelController {
 			JSONObject json = null;
 			json = new JSONObject(data);
 
-			if (json.has("registerChannels")) {
+			if (json.has(NODE_REGISTER_CHANNELS)) {
 				JSONArray registerChannels = json
-						.getJSONArray("registerChannels");
+						.getJSONArray(NODE_REGISTER_CHANNELS);
 				for (int i = 0; i < registerChannels.length(); i++) {
 					addNodeToChannel(registerChannels.getString(i), fromNode);
 				}
 			}
 
-			if (json.has("channels") && json.has("data")) {
-				JSONArray channels = json.getJSONArray("channels");
-				JSONObject channelData = json.getJSONObject("data");
+			if (json.has(NODE_DATA_DESTINATION) && json.has(NODE_DATA_BLOCK)) {
+				JSONArray channels = json.getJSONArray(NODE_DATA_DESTINATION);
+				JSONObject channelData = json.getJSONObject(NODE_DATA_BLOCK);
 				for (int i = 0; i < channels.length(); i++) {
 					String channel = channels.getString(i);
 					JSONObject jsonOut = new JSONObject();
-					jsonOut.put("data", channelData);
-					jsonOut.put("sourceChannel", channel);
+					jsonOut.put(NODE_DATA_BLOCK, channelData);
+					jsonOut.put(NODE_SOURCE_IDENTIFIER, channel);
 					sendToChannel(channel, jsonOut.toString() + "\r\n");
 				}
 			}
@@ -88,7 +98,7 @@ public class ChannelController {
 		if (errors != "") {
 			try {
 				JSONObject jsonOut = new JSONObject();
-				jsonOut.put("error", errors);
+				jsonOut.put(NODE_ERROR_MESSAGE, errors);
 				fromNode.sendData(jsonOut.toString() + "\r\n");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -98,7 +108,7 @@ public class ChannelController {
 
 	private void sendToChannel(String channel, String data) throws IOException {
 		ArrayList<NodeController> nodes;
-		if ("all".equals(channel)) {
+		if (NODE_SEND_TO_ALL_ADDRESS.equals(channel)) {
 			nodes = allNodes;
 		} else {
 			nodes = channels.get(channel);
