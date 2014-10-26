@@ -1,0 +1,27 @@
+= Introduction =
+
+Data is formatted as JSON as it’s extensible, and flexible, plus just about every language has a library for it, including browsers, and Arduinos.
+
+
+= Protocol fields  =
+
+== Sending Data ==
+*destination* - (required) List of channels that should receive the data block
+*source* - (optional) The name of the node sending data into the hub.  The hub should validate this information for correctness, and fill in / correct it in if it's missing.
+*date* - (optional) The current date in UTC format.
+   NOTE : Recommended for non-realtime communication with the hub, should be added by the hub if it is missing when the request is received.
+
+{{{
+{ 
+   source : “sourcename”, 
+   destination : [“list of”,”channels”], 
+   date : UTC timestamp,
+   data : { 
+      content : “destination channel defined parameters”,
+   },
+}
+}}}
+
+== Registering channels ==
+*register* - (required) List of channels that this node is listening for.
+
