@@ -1,19 +1,20 @@
 package hub;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.IOException;
 
-public class ConnectionManager implements Runnable {
+public class NodeSocketConnectionManager implements Runnable {
 
 	protected int serverPort;
 	protected ServerSocket serverSocket = null;
 	protected boolean isStopped = false;
 	protected Thread runningThread = null;
-	protected ChannelController controller = new ChannelController();
+	protected ChannelController controller;
 
-	public ConnectionManager(int port) {
+	public NodeSocketConnectionManager(int port, ChannelController controller) {
 		this.serverPort = port;
+		this.controller = controller;
 	}
 
 	public void run() {
@@ -30,9 +31,9 @@ public class ConnectionManager implements Runnable {
 					System.out.println("Server Stopped.");
 					return;
 				}
-				throw new RuntimeException("Error accepting client connection",	e);
+				throw new RuntimeException("Error accepting client connection", e);
 			}
-			new Thread(new NodeController(clientSocket, NodeController.MODE_PERSISTENT_SOCKET, controller)).start();
+			new Thread(new NodeInterfaceSocket(clientSocket, controller)).start();
 		}
 		System.out.println("Server Stopped.");
 		this.stop();
@@ -55,7 +56,7 @@ public class ConnectionManager implements Runnable {
 		try {
 			this.serverSocket = new ServerSocket(this.serverPort);
 		} catch (IOException e) {
-			throw new RuntimeException("Cannot open port "+this.serverPort, e);
+			throw new RuntimeException("Cannot open port " + this.serverPort, e);
 		}
 	}
 
