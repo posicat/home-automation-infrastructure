@@ -1,3 +1,5 @@
+#summary definition of the communication formats
+
 = Introduction =
 
 Data is formatted as JSON as it’s extensible, and flexible, plus just about every language has a library for it, including browsers, and Arduinos.
