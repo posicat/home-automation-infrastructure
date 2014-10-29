@@ -1,4 +1,4 @@
-package hub_test;
+package communicationHub_test;
 
 import static org.junit.Assert.fail;
 

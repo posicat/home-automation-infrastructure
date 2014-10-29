@@ -1,12 +1,13 @@
-package hub_test;
+package communicationHub_test;
 
 import static org.junit.Assert.assertEquals;
-import hub.ChannelController;
-import hub.NodeInterfaceString;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
+
+import communicationHub.ChannelController;
+import communicationHub.NodeInterfaceString;
 
 public class ChannelControllerTest {
 

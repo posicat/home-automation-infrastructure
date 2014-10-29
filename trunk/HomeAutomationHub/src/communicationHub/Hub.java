@@ -1,4 +1,4 @@
-package hub;
+package communicationHub;
 
 public class Hub {
 
