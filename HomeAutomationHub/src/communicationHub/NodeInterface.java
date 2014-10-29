@@ -1,4 +1,4 @@
-package hub;
+package communicationHub;
 
 public abstract class NodeInterface implements Runnable {
 

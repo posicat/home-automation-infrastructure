@@ -1,4 +1,4 @@
-package hub;
+package communicationHub;
 
 import java.io.IOException;
 import java.io.OutputStream;
