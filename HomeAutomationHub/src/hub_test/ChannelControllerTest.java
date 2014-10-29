@@ -1,4 +1,4 @@
-package test;
+package hub_test;
 
 import static org.junit.Assert.assertEquals;
 import hub.ChannelController;
@@ -43,7 +43,6 @@ public class ChannelControllerTest {
 		result = testInterface.getDataFromController();
 		JSONAssert.assertEquals("{\"source\":\"a\",\"nodeName\":\"" + testInterface.getNodeName()
 				+ "\",\"data\":{\"test\":\"success\"}}", result, true);
-
 	}
 
 	@Test
@@ -60,7 +59,6 @@ public class ChannelControllerTest {
 
 		result = testInterface.getDataFromController();
 		assertEquals(null, result);
-
 	}
 
 	@Test
@@ -108,9 +106,5 @@ public class ChannelControllerTest {
 
 		result = testInterfaceB.getDataFromController();
 		assertEquals(null, result);
-
-		
-		
 	}
-
 }

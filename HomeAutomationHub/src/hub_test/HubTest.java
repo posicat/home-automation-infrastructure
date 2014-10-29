@@ -1,4 +1,4 @@
-package test;
+package hub_test;
 
 import static org.junit.Assert.fail;
 
