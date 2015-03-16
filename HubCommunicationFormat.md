@@ -1,0 +1,29 @@
+# Introduction #
+
+Data is formatted as JSON as it’s extensible, and flexible, plus just about every language has a library for it, including browsers, and Arduinos.
+
+
+# Protocol fields #
+### Common Optional fields ###
+**date** - (optional) The current date in UTC format.  Recommended for non-realtime communication with the hub.
+
+## Registering channels ##
+|register:[""]     |Req |List of channels that this node is listening for.|
+|:-----------------|:---|:------------------------------------------------|
+|nodeName:""       |Opt |Name of this node (recommended to be a unique static identifier), if blank a GUID will be returned.|
+
+## Registration response ##
+|status:""         |Req |Status indicating the node was registered. ("registered")|
+|:-----------------|:---|:--------------------------------------------------------|
+|nodeName:""       |Req |Accepted node name, may contain a GUID if a duplicate node name was already registered.|
+|source:""         |Req |Source node name (the channel controller)|
+
+## Sending Data ##
+|destination:[""] |Req |List of channels that should receive the data block.|
+|:----------------|:---|:---------------------------------------------------|
+|data:{}          |Req |Data block, any valid JSON data defined by the nodes sending/receiving the data.|
+
+## Returning Data ##
+|source:""        |Req |Channel the data was sent via.|
+|:----------------|:---|:-----------------------------|
+|data:{}          |Req |The data that was sent unaltered by the hub.|

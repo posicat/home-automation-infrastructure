@@ -1,0 +1,14 @@
+# Introduction #
+
+It is likely that most hub transports will be local, but it is also possible that remote nodes will want to interface with the hub and that the hub will want the communications to be secure and reliable.  A Transport is an interface that factors out the nitty gritty of a specific implementations from the user.  The hub brings forth a transport instance via a TransportFactory.
+
+
+# Details #
+
+Characteristics of a Transport…
+
+Supports Publish/Subscribe pattern-- to post events that are received by zero or more subscribers.  These events can post data to or request data from subscribers
+Listeners (callbacks) can be registered to binds incoming events to hub processing code.
+Transport can queried for its properties (security and compression strategy, supports message integrity, etc.)
+A transport instance can be a Transmitter, Receiver, or Transceiver (both).  I anticipate most will be both.
+Message integrity and security is transparent to the user and could be optional for transports built using shared memory and other “reliable” and “secure” methods.

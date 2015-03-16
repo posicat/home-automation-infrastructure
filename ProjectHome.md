@@ -1,0 +1,1 @@
+A project to build a home automation hub, and surrmounding modules
