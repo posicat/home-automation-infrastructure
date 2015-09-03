@@ -2,5 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="src" path="/HomeAutomationHub"/>
+	<classpathentry kind="lib" path="/CommonLibraries/lib/json-20141113.jar"/>
+	<classpathentry kind="lib" path="/CommonLibraries/lib/jsonassert-1.2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
